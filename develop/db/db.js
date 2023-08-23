@@ -106,3 +106,20 @@ const updateRoleDepartment = async (department_id, role_id) => {
     return result;
 }
 
+module.exports = {
+    viewAllDepartments,
+    viewAllRoles,
+    viewAllEmployees,
+    addDepartment,
+    addRole,
+    addEmployee,
+    updateEmployeeRole,
+    deleteDepartment,
+    updateEmployeeManager,
+    deleteRole,
+    viewEmployeesByManager,
+    viewEmployeesByDepartment,
+    deleteEmployees,
+    viewDepatmentBudget,
+    updateRoleDepartment
+};
