@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const db = require('./db/db.js');
 
-async function app() {
+async function runPrompts() {
     let continueExecution = true;
 
     while (continueExecution) {
@@ -169,4 +169,4 @@ async function promptEmployeeSelection(message) {
     return employee_id;
 }
 
-app();
+runPrompts();
