@@ -20,7 +20,6 @@ async function app() {
                 'View all employees',
                 'View all employees by manager',
                 'View employees by department',
-                'View total budget by department',
                 'Add an employee',
                 'Delete an employee',
                 'Update manager',
@@ -103,11 +102,6 @@ async function app() {
             case 'Delete an employee':
                 const employee_to_delete_id = await promptEmployeeSelection('Select an employee: ');
                 await db.deleteEmployees(employee_to_delete_id);
-                break;
-            case 'View total budget by department':
-                const department_to_view_id = await promptDepartmentSelection();
-                const totalBudget = await db.viewDepatmentBudget(department_to_view_id);
-                console.table(totalBudget);
                 break;
             default:
                 continueExecution = false;
