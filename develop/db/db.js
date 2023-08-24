@@ -30,52 +30,52 @@ const viewAllEmployees = async () => {
 
 // Function to add a department
 const addDepartment = async (name) => {
-    const result = await connection.execute(
+    const response = await connection.execute(
         'INSERT INTO department (name) VALUES (?)', [name]
     );
-    return result;
+    return response;
 };
 
 // Function to add a role
 const addRole = async (title, salary, department_id) => {
-    const result = await connection.execute(
+    const response = await connection.execute(
         'INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)', [title, salary, department_id]
     );
-    return result;
+    return response;
 };
 
 // Function to add an employee
 const addEmployee = async (first_name, last_name, role_id, manager_id) => {
-    const result = await connection.execute(
+    const response = await connection.execute(
         'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [first_name, last_name, role_id, manager_id]
     );
-    return result;
+    return response;
 };
 
 // Function to update an employee role
 const updateEmployeeRole = async (role_id, employee_id) => {
-    const result = await connection.execute(
+    const response = await connection.execute(
         'UPDATE employee SET role_id = ? WHERE id = ?', [role_id, employee_id]
     );
-    return result;
+    return response;
 };
 
 // BONUS // 
 const updateEmployeeManager = async (employee_id, manager_id) => {
-    const result = await connection.execute('UPDATE employee SET manager_id = ? where id = ?', [manager_id, employee_id]);
-    return result;
+    const response = await connection.execute('UPDATE employee SET manager_id = ? where id = ?', [manager_id, employee_id]);
+    return response;
 }
 
 const deleteDepartment = async (department_id) => {
     await connection.execute('UPDATE ROLE SET department_id = null where department_id = ?', [department_id]);
-    const result = await connection.execute('DELETE from department where id = ? ', [department_id]);
-    return result;
+    const response = await connection.execute('DELETE from department where id = ? ', [department_id]);
+    return response;
 }
 
 const deleteRole = async (role_id) => {
     await connection.execute('update employee set role_id = null where role_id = ?', [role_id]);
-    const result = await connection.execute('DELETE from role where id = ? ', [role_id]);
-    return result;
+    const response = await connection.execute('DELETE from role where id = ? ', [role_id]);
+    return response;
 }
 
 const viewEmployeesByManager = async (manager_id) => {
@@ -90,8 +90,8 @@ const viewEmployeesByDepartment = async (department_id) => {
 
 const deleteEmployees = async (employee_id) => {
     await connection.execute('UPDATE employee SET manager_id = null where manager_id = ?', [employee_id]);
-    const result = await connection.execute('DELETE from employee where id = ? ', [employee_id]);
-    return result;
+    const response = await connection.execute('DELETE from employee where id = ? ', [employee_id]);
+    return response;
 }
 
 const viewDepatmentBudget = async (department_id) => {
@@ -102,8 +102,8 @@ const viewDepatmentBudget = async (department_id) => {
 }
 
 const updateRoleDepartment = async (department_id, role_id) => {
-    const result = await connection.execute('update role set department_id = ? where id = ?', [department_id, role_id]);
-    return result;
+    const response = await connection.execute('update role set department_id = ? where id = ?', [department_id, role_id]);
+    return response;
 }
 
 module.exports = {
