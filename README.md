@@ -33,8 +33,9 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
-## Usage
 
+## Usage
+Once the user has typed in 'npm run start' in the terminal, they will be presented with the question '....................................?' 
 
 ## Installation
 To install this application please enter the following code in the terminal:
@@ -51,4 +52,5 @@ quit;
 ```md
 npm run start
 ```
+
 ## Walkthrough Video
