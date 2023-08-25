@@ -33,3 +33,22 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
+## Usage
+
+
+## Installation
+To install this application please enter the following code in the terminal:
+```md
+npm i
+mysql -u root -p
+```
+Then when prompted enter your mySQL password. Please ensure you have properly logged into your mySQL before continuing.
+```md
+source sql/schema.sql
+source sql/seeds.sql
+quit;
+```
+```md
+npm run start
+```
+## Walkthrough Video
