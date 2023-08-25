@@ -35,7 +35,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 ```
 
 ## Usage
-Once the user has typed in 'npm run start' in the terminal, they will be presented with the question '....................................?' 
+Once the user has typed in 'npm run start' in the terminal, they will be presented with the message '....................................' 
 
 ## Installation
 To install this application please enter the following code in the terminal:
