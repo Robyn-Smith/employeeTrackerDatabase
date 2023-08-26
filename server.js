@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const db = require('./db/db.js');
+const db = require('./JavaScript/employeeDatabase.js')
 
 async function runPrompts() {
     let continueExecution = true;
