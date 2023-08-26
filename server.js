@@ -112,6 +112,29 @@ async function runPrompts() {
     process.exit();
 }
 
+async function promptEmployeeSelection(message) {
+    const allEmployees = await db.viewAllEmployees();
+    const employeeChoices =
+        [
+            { name: 'None', value: null },
+            ...allEmployees.map((employee) => ({
+                name: employee.first_name + " " + employee.last_name,
+                value: employee.id,
+            })),
+        ];
+
+
+
+    const { employee_id } = await inquirer.prompt({
+        type: 'list',
+        name: 'employee_id',
+        message: message,
+        choices: employeeChoices,
+    });
+
+    return employee_id;
+}
+
 async function promptDepartmentSelection() {
     const allDepartments = await db.viewAllDepartments();
     const departmentChoices = allDepartments.map((department) => ({
@@ -144,29 +167,6 @@ async function promptRoleSelection() {
     });
 
     return role_id;
-}
-
-async function promptEmployeeSelection(message) {
-    const allEmployees = await db.viewAllEmployees();
-    const employeeChoices =
-        [
-            { name: 'None', value: null },
-            ...allEmployees.map((employee) => ({
-                name: employee.first_name + " " + employee.last_name,
-                value: employee.id,
-            })),
-        ];
-
-
-
-    const { employee_id } = await inquirer.prompt({
-        type: 'list',
-        name: 'employee_id',
-        message: message,
-        choices: employeeChoices,
-    });
-
-    return employee_id;
 }
 
 runPrompts();
