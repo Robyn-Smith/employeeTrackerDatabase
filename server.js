@@ -10,42 +10,42 @@ async function runPrompts() {
             name: 'action',
             message: 'Please choose an option below:',
             choices: [
-                'View all employees',
-                'View all departments',
-                'View all roles',
-                'View all employees by manager',
-                'View employees by department',
-                'Add an employee',
-                'Add a department',
-                'Add a role',
-                'Update an employee role',
-                'Update manager',
-                'Reassign department for the role',
-                'Delete an employee',
-                'Delete a department',
-                'Delete a role',
-                'Quit'
+                'view employees',
+                'view departments',
+                'view roles',
+                'view employees under chosen manager',
+                'view employees within chosen department',
+                'add new employee',
+                'add new department',
+                'add new role',
+                'update chosen employee role',
+                'update manager',
+                'change the department of chosen role',
+                'remove employee',
+                'remove department',
+                'remove role',
+                'END'
             ],
         });
 
         switch (action) {
-            case 'View all departments':
+            case 'view departments':
                 const departments = await db.viewAllDepartments();
                 console.table(departments);
                 break;
-            case 'View all roles':
+            case 'view roles':
                 const roles = await db.viewAllRoles();
                 console.table(roles);
                 break;
-            case 'View all employees':
+            case 'view employees':
                 const employees = await db.viewAllEmployees();
                 console.table(employees);
                 break;
-            case 'Add a department':
+            case 'add new department':
                 const { name } = await inquirer.prompt({ type: 'input', name: 'name', message: 'Enter the department name:' });
                 await db.addDepartment(name);
                 break;
-            case 'Add a role':
+            case 'add new role':
                 const roleData = await inquirer.prompt([
                     { type: 'input', name: 'title', message: 'Enter the role title:' },
                     { type: 'input', name: 'salary', message: 'Enter the salary for the role:' },
@@ -53,12 +53,12 @@ async function runPrompts() {
                 const department_id = await promptDepartmentSelection();
                 await db.addRole(roleData.title, roleData.salary, department_id);
                 break;
-            case 'Reassign department for the role':
+            case 'change the department of chosen role':
                 const role_id = await promptRoleSelection();
                 const new_dep_id = await promptDepartmentSelection();
                 await db.updateRoleDepartment(new_dep_id, role_id);
                 break;
-            case 'Add an employee':
+            case 'add new employee':
                 const employeeData = await inquirer.prompt([
                     { type: 'input', name: 'first_name', message: 'Input first name:' },
                     { type: 'input', name: 'last_name', message: 'Input last name:' },
@@ -71,35 +71,35 @@ async function runPrompts() {
                 await db.addEmployee(employeeData.first_name, employeeData.last_name, emp_role_id, manager_id);
 
                 break;
-            case 'Update an employee role':
+            case 'update chosen employee role':
                 const emp_to_update_id = await promptEmployeeSelection('Select employee: ');
                 const new_emp_role_id = await promptRoleSelection();
                 await db.updateEmployeeRole(new_emp_role_id, emp_to_update_id);
                 break;
-            case 'Update manager':
+            case 'update manager':
                 const emp_to_update_manager_id = await promptEmployeeSelection("Select employee: ");
                 const manager_to_update_id = await promptEmployeeSelection('Select new manager: ');
                 await db.updateEmployeeManager(emp_to_update_manager_id, manager_to_update_id);
                 break;
-            case 'Delete a department':
+            case 'remove department':
                 const department_to_delete_id = await promptDepartmentSelection();
                 await db.deleteDepartment(department_to_delete_id);
                 break;
-            case 'Delete a role':
+            case 'remove role':
                 const role_to_delete_id = await promptRoleSelection();
                 await db.deleteRole(role_to_delete_id);
                 break;
-            case 'View all employees by manager':
+            case 'view employees under chosen manager':
                 const manager_to_filter_by = await promptEmployeeSelection('Select manager:');
                 const empsByManager = await db.viewEmployeesByManager(manager_to_filter_by);
                 console.table(empsByManager);
                 break;
-            case 'View employees by department':
+            case 'view employees within chosen department':
                 const department_id_to_filter_by = await promptDepartmentSelection();
                 const empsByDepartment = await db.viewEmployeesByDepartment(department_id_to_filter_by);
                 console.table(empsByDepartment);
                 break;
-            case 'Delete an employee':
+            case 'remove employee':
                 const employee_to_delete_id = await promptEmployeeSelection('Select an employee: ');
                 await db.deleteEmployees(employee_to_delete_id);
                 break;
