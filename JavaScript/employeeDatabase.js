@@ -96,13 +96,6 @@ const remove_Employee = async (employee_id) => {
     return response;
 }
 
-const viewDepatmentBudget = async (department_id) => {
-    const [rows, fields] = await connection.execute(
-        'select d.id, d.name, sum(salary) as budget from role r JOIN employee e on r.id = e.role_id join department d on d.id = r.department_id where r.department_id = ?', [department_id]
-    )
-    return rows;
-}
-
 const update_Role_Department = async (department_id, role_id) => {
     const response = await connection.execute('update role set department_id = ? where id = ?', [department_id, role_id]);
     return response;
@@ -122,6 +115,5 @@ module.exports = {
     view_employees_under_Manager,
     view_employees_in_Department,
     remove_Employee,
-    viewDepatmentBudget,
     update_Role_Department
 };
