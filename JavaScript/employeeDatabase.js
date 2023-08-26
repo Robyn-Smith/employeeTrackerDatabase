@@ -86,18 +86,18 @@ const remove_Role = async (role_id) => {
 }
 
 module.exports = {
+    view_Employees,
     view_Departments,
     view_Roles,
-    view_Employees,
+    view_employees_under_Manager,
+    view_employees_in_Department,
     add_Department,
     add_Role,
     add_Employee,
     update_employee_Role,
-    remove_Department,
+    update_Role_Department,
     update_employee_Manager,
-    remove_Role,
-    view_employees_under_Manager,
-    view_employees_in_Department,
     remove_Employee,
-    update_Role_Department
+    remove_Department,
+    remove_Role,
 };
