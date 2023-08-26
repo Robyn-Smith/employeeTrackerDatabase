@@ -123,8 +123,6 @@ async function promptEmployeeSelection(message) {
             })),
         ];
 
-
-
     const { employee_id } = await inquirer.prompt({
         type: 'list',
         name: 'employee_id',
