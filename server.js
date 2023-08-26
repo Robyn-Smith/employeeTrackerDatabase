@@ -30,20 +30,20 @@ async function runPrompts() {
 
         switch (action) {
             case 'view departments':
-                const departments = await db.viewAllDepartments();
+                const departments = await db.view_Departments();
                 console.table(departments);
                 break;
             case 'view roles':
-                const roles = await db.viewAllRoles();
+                const roles = await db.view_Roles();
                 console.table(roles);
                 break;
             case 'view employees':
-                const employees = await db.viewAllEmployees();
+                const employees = await db.view_Employees();
                 console.table(employees);
                 break;
             case 'add new department':
                 const { name } = await inquirer.prompt({ type: 'input', name: 'name', message: 'Please enter the name of the department:' });
-                await db.addDepartment(name);
+                await db.add_Department(name);
                 break;
             case 'add new role':
                 const roleData = await inquirer.prompt([
@@ -51,12 +51,12 @@ async function runPrompts() {
                     { type: 'input', name: 'salary', message: 'Please enter the annual salary of the new role:' },
                 ]);
                 const department_id = await promptDepartmentSelection();
-                await db.addRole(roleData.title, roleData.salary, department_id);
+                await db.add_Role(roleData.title, roleData.salary, department_id);
                 break;
             case 'change the department of chosen role':
                 const role_id = await promptRoleSelection();
                 const new_dep_id = await promptDepartmentSelection();
-                await db.updateRoleDepartment(new_dep_id, role_id);
+                await db.update_Role_Department(new_dep_id, role_id);
                 break;
             case 'add new employee':
                 const employeeData = await inquirer.prompt([
@@ -68,40 +68,40 @@ async function runPrompts() {
                 const emp_role_id = await promptRoleSelection();
                 const manager_id = await promptEmployeeSelection('Please choose a manager: ');
 
-                await db.addEmployee(employeeData.first_name, employeeData.last_name, emp_role_id, manager_id);
+                await db.add_Employee(employeeData.first_name, employeeData.last_name, emp_role_id, manager_id);
 
                 break;
             case 'update chosen employee role':
                 const emp_to_update_id = await promptEmployeeSelection('Please choose an employee: ');
                 const new_emp_role_id = await promptRoleSelection();
-                await db.updateEmployeeRole(new_emp_role_id, emp_to_update_id);
+                await db.update_employee_Role(new_emp_role_id, emp_to_update_id);
                 break;
             case 'update manager':
                 const emp_to_update_manager_id = await promptEmployeeSelection("Please choose an employee: ");
                 const manager_to_update_id = await promptEmployeeSelection('Please assign a new manager: ');
-                await db.updateEmployeeManager(emp_to_update_manager_id, manager_to_update_id);
+                await db.update_employee_Manager(emp_to_update_manager_id, manager_to_update_id);
                 break;
             case 'remove department':
                 const department_to_delete_id = await promptDepartmentSelection();
-                await db.deleteDepartment(department_to_delete_id);
+                await db.remove_Department(department_to_delete_id);
                 break;
             case 'remove role':
                 const role_to_delete_id = await promptRoleSelection();
-                await db.deleteRole(role_to_delete_id);
+                await db.remove_Role(role_to_delete_id);
                 break;
             case 'view employees under chosen manager':
                 const manager_to_filter_by = await promptEmployeeSelection('Please choose a manager:');
-                const empsByManager = await db.viewEmployeesByManager(manager_to_filter_by);
+                const empsByManager = await db.view_employees_under_Manager(manager_to_filter_by);
                 console.table(empsByManager);
                 break;
             case 'view employees within chosen department':
                 const department_id_to_filter_by = await promptDepartmentSelection();
-                const empsByDepartment = await db.viewEmployeesByDepartment(department_id_to_filter_by);
+                const empsByDepartment = await db.view_employees_in_Department(department_id_to_filter_by);
                 console.table(empsByDepartment);
                 break;
             case 'remove employee':
                 const employee_to_delete_id = await promptEmployeeSelection('Please choose an employee: ');
-                await db.deleteEmployees(employee_to_delete_id);
+                await db.remove_Employee(employee_to_delete_id);
                 break;
             default:
                 continueExecution = false;
@@ -113,7 +113,7 @@ async function runPrompts() {
 }
 
 async function promptEmployeeSelection(message) {
-    const allEmployees = await db.viewAllEmployees();
+    const allEmployees = await db.view_Employees();
     const employeeChoices =
         [
             { name: 'None', value: null },
@@ -136,7 +136,7 @@ async function promptEmployeeSelection(message) {
 }
 
 async function promptDepartmentSelection() {
-    const allDepartments = await db.viewAllDepartments();
+    const allDepartments = await db.view_Departments();
     const departmentChoices = allDepartments.map((department) => ({
         name: department.name,
         value: department.id,
@@ -153,7 +153,7 @@ async function promptDepartmentSelection() {
 }
 
 async function promptRoleSelection() {
-    const allRoles = await db.viewAllRoles();
+    const allRoles = await db.view_Roles();
     const roleChoices = allRoles.map((role) => ({
         name: role.title,
         value: role.id,
