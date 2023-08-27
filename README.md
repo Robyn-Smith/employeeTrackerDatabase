@@ -67,6 +67,8 @@ Once the user has typed in 'npm run start' in the terminal, they will be present
 - 'remove department',
 - 'remove role',
 - 'END'
+
 The user then uses the up and down keys in the keyboard to navigate through the options. The user can easily see what options they are selecting as the writing turns blue. When the user has selected their desired action they can press the enter key and follow any other following messages on they keyboard to make their changes to the database. For more support please view the walkthrough video below.
 
 ## Walkthrough Video
+https://www.youtube.com/watch?v=HOw0JJUiuIo
