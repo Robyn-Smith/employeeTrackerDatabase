@@ -2,7 +2,7 @@
 
 ## Description
 
-Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called **content management systems (CMS)**. This command-line application was build from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
+This command-line application was build from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL. This application creates a user friendly interface in the terminal that allows non-developers to easily view and interact with information stored in the database. This type of interface is called **content management systems (CMS)**. 
 
 ## User Story
 
@@ -34,9 +34,6 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
 
-## Usage
-Once the user has typed in 'npm run start' in the terminal, they will be presented with the message '....................................' 
-
 ## Installation
 To install this application please enter the following code in the terminal:
 ```md
@@ -45,12 +42,31 @@ mysql -u root -p
 ```
 Then when prompted enter your mySQL password. Please ensure you have properly logged into your mySQL before continuing.
 ```md
-source sql/schema.sql
-source sql/seeds.sql
+source db/schema.sql
+source db/seeds.sql
 quit;
 ```
 ```md
 npm run start
 ```
+
+## Usage
+Once the user has typed in 'npm run start' in the terminal, they will be presented with the message 'Please choose an option below:' and the following options:
+- 'view employees',
+- 'view departments',
+- 'view roles',
+- 'view employees under chosen manager',
+- 'view employees within chosen department',
+- 'add new employee',
+- 'add new department',
+- 'add new role',
+- 'update chosen employee role',
+- 'update manager',
+- 'change the department of chosen role',
+- 'remove employee',
+- 'remove department',
+- 'remove role',
+- 'END'
+The user then uses the up and down keys in the keyboard to navigate through the options. The user can easily see what options they are selecting as the writing turns blue. When the user has selected their desired action they can press the enter key and follow any other following messages on they keyboard to make their changes to the database. For more support please view the walkthrough video below.
 
 ## Walkthrough Video
